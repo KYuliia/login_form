@@ -1,10 +1,6 @@
 import gql from 'graphql-tag'
-
-// language=GraphQL
-export const Main_Page = gql`
-  mutation Main_Page_Mutation( $password: String!, $name: String!) {
-    login( password: $password, name: $name) {
-      token
-    }
-  }
+// language=GraphQL format=false
+export const LOGIN_MUTATION = gql`type Mutation {
+  login(name: String!, password: String!): AuthPayload!
+}
 `

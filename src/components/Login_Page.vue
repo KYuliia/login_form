@@ -1,19 +1,19 @@
 <template>
   <div class="login_page">
     <h1>Login</h1>
-    <form class="login_page_form" method="POST" @submit.prevent="signup">
-      <p><input class="part-contact-input__input" type="text" placeholder="First Name...." required name="Name"
-                v-model="name" required></p>
-      <p><input class="part-contact-input__input" type="password" placeholder="Password" required name="Password"
-                v-model="password" required></p>
-      <button type="button" class="btn btn-warning">
-        <router-link to="/main"><a>GET STARTED</a></router-link>
-      </button>
+    <form class="login_page_form" method="POST">
+      <p><input class="part-contact-input__input" type="text" placeholder="First Name...." name="Name"
+                v-model="name"></p>
+      <p><input class="part-contact-input__input" type="password" placeholder="Password" name="Password"
+                v-model="password"></p>
+      <router-link to="/main">
+        <button type="button" class="btn btn-warning"> GET STARTED</button>
+      </router-link>
     </form>
   </div>
 </template>
 <script>
-  import {Main_Page} from '/mutations'
+  import {LOGIN_MUTATION} from '@/mutation.js';
 
   export default {
     name: 'Login_Page',
@@ -25,16 +25,15 @@
     },
     methods: {
       login() {
-        this.$apollo
-          .mutate({
-            mutation: Main_Page_Mutation,
-            variables: {
-              name: this.name,
-              password: this.password
-            }
-          })
+        this.$apollo.mutate({
+          mutation: LOGIN_MUTATION,
+          variables: {
+            name: this.name,
+            password: this.password
+          }
+        })
           .then(response => {
-            localStorage.setItem('Login_Page', response.data.login.token);
+            localStorage.setItem('LOGIN_MUTATION', response.data.login.token);
             this.$router.replace('/main')
           })
           .catch(error => console.error(error))

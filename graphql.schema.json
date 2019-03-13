@@ -6,7 +6,11 @@
         "name": "Query"
       },
       "mutationType": {
-        "name": "Mutation"
+        "name": "Mutation",
+      "login":{
+        "name": "String",
+        "password": "String"
+      }
       },
       "subscriptionType": null,
       "types": [
